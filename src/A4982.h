@@ -15,7 +15,8 @@
 
 class A4982 : public BasicStepperDriver {
 protected:
-    static const uint8_t MS_TABLE[];
+    static const uint8_t MS_TABLE1[];
+    static const uint8_t MS_TABLE2[];
     int ms1_pin = PIN_UNCONNECTED;
     int ms2_pin = PIN_UNCONNECTED;
     void init(void);
@@ -28,7 +29,8 @@ protected:
     // also 200ns between ENBL/DIR/MSx changes and STEP HIGH
 
     // Get the microstep table
-    virtual const uint8_t* getMicrostepTable();
+    virtual const uint8_t* getMicrostepTable1();
+    virtual const uint8_t* getMicrostepTable2();
     virtual size_t getMicrostepTableSize();
 
     // Get max microsteps supported by the device

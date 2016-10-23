@@ -22,9 +22,9 @@
 // BasicStepperDriver stepper(DIR, STEP);
 
 // microstep control for A4988
-#define MS1 10
-#define MS2 11
-A4982 stepper(MOTOR_STEPS, DIR, STEP, MS1, MS2);
+#define MS1 11
+#define MS2 12
+A4982 stepper(MOTOR_STEPS, DIR, STEP, ENBL, MS1, MS2);
 
 void setup() {
     /*
@@ -32,7 +32,7 @@ void setup() {
      * These motors can do up to about 200rpm.
      * Too high will result in a high pitched whine and the motor does not move.
      */
-    stepper.setRPM(120);
+    stepper.setRPM(60);
 }
 
 void loop() {
@@ -49,6 +49,8 @@ void loop() {
     stepper.move(-100);
     stepper.rotate(-180);
 
+    delay(1000);
+
     /*
      * Microstepping mode: 1,2,4,16
      * Mode 1 is full speed.
@@ -56,7 +58,7 @@ void loop() {
      * The motor should rotate just as fast (set RPM),
      * but movement precision is increased.
      */
-    stepper.setMicrostep(16);
+    stepper.setMicrostep(2);
 
     // 180 degrees now takes 100 * 8 microsteps
     stepper.move(100*8);
@@ -67,4 +69,34 @@ void loop() {
     stepper.rotate(-180);
 
     delay(1000);
+
+    /*
+     * Microstepping mode 4 microsteps
+    */
+    stepper.setMicrostep(4);
+
+    // 180 degrees now takes 100 * 8 microsteps
+    stepper.move(100*8);
+    stepper.rotate(180);
+
+    // as you can see, using degrees is easier
+    stepper.move(-100*8);
+    stepper.rotate(-180);
+
+    delay(1000);
+
+    /*
+     * Microstepping mode 16 microstep
+    */
+    stepper.setMicrostep(16);
+
+    // 180 degrees now takes 100 * 8 microsteps
+    stepper.move(100*8);
+    stepper.rotate(180);
+
+    // as you can see, using degrees is easier
+    stepper.move(-100*8);
+    stepper.rotate(-180);
+
+    delay(2000);
 }
