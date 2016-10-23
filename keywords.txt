@@ -1,0 +1,9 @@
+StepperDriver KEYWORD1
+
+BasicStepperDriver KEYWORD1
+A4982 KEYWORD1
+
+setMicrostep KEYWORD2
+move KEYWORD2
+rotate KEYWORD2
+setRPM KEYWORD2
